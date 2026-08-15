@@ -1,0 +1,26 @@
+# read Verilog design file
+read_verilog -nooverwrite adder.v
+
+# Set top module
+hierarchy -check -top adder
+
+# Try to map built-in RAM module
+proc
+opt -fast
+memory -nomap
+memory_libmap -lib ./utils/chorusimRAM.lib -logic-cost-ram 1
+
+# synth
+synth -top test
+
+# rtlil is Yosys's internal representation
+# as flatten is only needed at last, users can manually 
+# write scripts to support incremental compilation
+# cmds: read_rtlil/write_rtlil adder.il
+
+flatten
+abc -fast -lut 6
+opt_clean
+
+# save blif
+write_blif -noalias test.blif   

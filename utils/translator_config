@@ -1,0 +1,7 @@
+.target vcd
+.jobs 1
+.tick_range 0 0
+.output ./examples/adder/result/adder.vcd
+.part_num 1
+.model_base_file ./examples/adder/result/adder
+.wave_base_file ./examples/adder/result/adder

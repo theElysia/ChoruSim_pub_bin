@@ -1,0 +1,11 @@
+.gpu_num 1
+.cudacore 21760
+.jobs 4
+.dump_level $TOP -1
+.max_macrospo_num 1000000
+.lut_tail_threshold 2048
+.lut_opt_level 0
+.blif ./examples/adder/circuit/adder.blif
+.output ./examples/adder/result/adder
+.part_options $NITER 10 $SEED 0 $DBGLVL 0 $COST_COMPUTATION 1 $COST_STORAGE 0
+.proxy_graph_settings $EXACT 0 $FANOUT_MAX 10000 $HYPEREDGE_MAX 50 $HYPEREDGE_APPROX 10

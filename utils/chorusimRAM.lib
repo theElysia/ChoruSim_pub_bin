@@ -1,0 +1,17 @@
+ram block $__CHORUSIM_RAM_2RW_a13b32 {
+    abits 13;
+    width 32;
+    byte 1;
+    init zero;
+    # relative cost DFF: -logic-cost-ram 1
+    cost 128;
+
+    port srsw "A" "B" {
+        clock posedge;
+        # Has a clock enable signal (gates both read and write).
+        clken;
+        rden;
+        # When port is writing, the data read is the new value.
+        rdwr new;
+    }
+}

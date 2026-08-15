@@ -1,0 +1,20 @@
+# read Verilog design file, or you should add -sv for SystemVerilog; refer to Yosys's manual
+read_verilog -nooverwrite ./examples/adder/circuit/adder.v
+
+# Set top module
+hierarchy -check -top adder
+
+# Try to map built-in RAM module
+proc
+opt -fast
+memory -nomap
+memory_libmap -lib ./utils/chorusimRAM.lib -logic-cost-ram 1
+
+# synth
+synth -top adder
+flatten
+abc -fast -lut 6
+opt_clean
+
+# save blif
+write_blif -noalias ./examples/adder/circuit/adder.blif   
